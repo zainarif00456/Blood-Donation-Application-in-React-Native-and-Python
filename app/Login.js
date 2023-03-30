@@ -22,8 +22,8 @@ const Login = ({navigation}) => {
     <ScrollView style={{width: '100%', paddingTop: '10%'}}>
     <View style={styles.container}>
     {/* <ImageBackground source={require('./assets/images/image.png')} style={styles.backgroundImage}> */}
-      <TextInput style={styles.userCredentials}  placeholder='User Name' returnKeyType='next' placeholderTextColor={'white'} id='username'/>
-      <TextInput style={styles.userCredentials} placeholder='Password' autoCompleteType='password' secureTextEntry={state} placeholderTextColor={'white'} id='password'/>
+      <TextInput style={styles.userCredentials}  placeholder='User Name' returnKeyType='next' id='username'/>
+      <TextInput style={styles.userCredentials} placeholder='Password' autoCompleteType='password' secureTextEntry={state}  id='password'/>
       <TouchableOpacity
                   activeOpacity={0.8}
                   style={{backgroundColor: '#AF0404', padding: '2%', borderRadius: 20}}

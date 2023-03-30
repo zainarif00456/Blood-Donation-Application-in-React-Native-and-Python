@@ -42,17 +42,17 @@ export default function SignUp({navigation, route}) {
       <Text style={styles.titleHeading}>Create a New BLOOD Account</Text>
       <ScrollView style={{width: '100%'}}>
         <View style={styles.container}>
-        <TextInput style={styles.inputFields} onChangeText={setFullname} placeholder='Full Name' id='fullname' placeholderTextColor={'white'}/>
-        <TextInput style={styles.inputFields} onChangeText={setCNIC} placeholder='CNIC' keyboardType='numeric' maxLength={13} id='cnic' placeholderTextColor={'white'}/>
+        <TextInput style={styles.inputFields} onChangeText={setFullname} placeholder='Full Name' id='fullname'/>
+        <TextInput style={styles.inputFields} onChangeText={setCNIC} placeholder='CNIC' keyboardType='numeric' maxLength={13} id='cnic' />
         <SelectDropdown dropdownStyle={styles.bloodgroupField} onSelect={setBlood} id={'bloodgroup'} rowTextStyle={{color:'white'}}
         buttonTextStyle={{color: 'white'}} buttonStyle={styles.bloodgroupField} data={bloodGroups} />
 
-        <TextInput style={styles.inputFields} placeholder='Date of Birth (DD-MM-YYYY)' onChangeText={setDOB} id='dob' placeholderTextColor={'white'}/>
-        <TextInput style={styles.inputFields} placeholder='Phone No' id='phone' maxLength={11} onChangeText={setPhone} keyboardType='numeric' placeholderTextColor={'white'}/>
-        <TextInput style={styles.inputFields} placeholder='Email-Address' id='email' keyboardType='email-address' onChangeText={setEmail} placeholderTextColor={'white'}/>
-        <TextInput style={styles.inputFields} placeholder='User Name' id='user' placeholderTextColor={'white'} onChangeText={setUserName}/>
-        <TextInput style={styles.inputFields} autoCompleteType='password' secureTextEntry={state} placeholder='Password' id='passwd' autoCorrect={false} onChangeText={setPassword} placeholderTextColor={'white'}/>
-        <TextInput style={styles.inputFields} autoCompleteType='password' secureTextEntry={state} placeholder='Confirm Password' id='passwd' autoCorrect={false} onChangeText={setConfirmPassword} placeholderTextColor={'white'}/>
+        <TextInput style={styles.inputFields} placeholder='Date of Birth (DD-MM-YYYY)' onChangeText={setDOB} id='dob' />
+        <TextInput style={styles.inputFields} placeholder='Phone No' id='phone' maxLength={11} onChangeText={setPhone} keyboardType='numeric' />
+        <TextInput style={styles.inputFields} placeholder='Email-Address' id='email' keyboardType='email-address' onChangeText={setEmail} />
+        <TextInput style={styles.inputFields} placeholder='User Name' id='user' onChangeText={setUserName}/>
+        <TextInput style={styles.inputFields} autoCompleteType='password' secureTextEntry={state} placeholder='Password' id='passwd' autoCorrect={false} onChangeText={setPassword} />
+        <TextInput style={styles.inputFields} autoCompleteType='password' secureTextEntry={state} placeholder='Confirm Password' id='passwd' autoCorrect={false} onChangeText={setConfirmPassword} />
         <TouchableOpacity
                   activeOpacity={0.8}
                   style={{backgroundColor: '#AF0404', padding: '2%', borderRadius: 20}}

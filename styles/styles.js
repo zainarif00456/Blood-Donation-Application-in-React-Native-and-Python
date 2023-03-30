@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       alignItems: 'center',
-      backgroundColor: '#252525',
+      backgroundColor: 'white',
     },
     titleHeading: {
       fontSize: 50,
@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
     //   padding: '4%',
       borderBottomColor: '#AF0404',
     //   borderRadius: 10,
-      color: 'white',
       opacity: 0.8,
     },
     logoImage:{
@@ -54,7 +53,6 @@ const styles = StyleSheet.create({
         borderBottomColor: '#AF0404',
         // padding: '4%',
         // borderRadius: 10,
-        color: 'white',
         // opacity: 0.8
       },
       bloodgroupField: {

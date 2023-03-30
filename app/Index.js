@@ -106,7 +106,7 @@ export default function Index() {
 
       <Animated.View style={{
         flexGrow: 1,
-        backgroundColor: '#252525',
+        backgroundColor: 'white',
         position: 'absolute',
         top: 0,
         bottom: 0,
@@ -149,7 +149,7 @@ export default function Index() {
             color: 'black',
             paddingTop: 20
           }}>{currentTab}</Text>
-         
+         {/* Conditional rendering of screens */}
          {(() => {
               if (currentTab == 'Home'){
                 
@@ -176,7 +176,7 @@ export default function Index() {
   );
 }
 
-// For multiple Buttons...
+// For multiple Buttons in side menu...
 const TabButton = (currentTab, setCurrentTab, title, image, animation) => {
   return (
 
@@ -216,7 +216,7 @@ const TabButton = (currentTab, setCurrentTab, title, image, animation) => {
   );
 }
 
-
+// Screens to render with click of button
 const Home = ()=>{
   return (
     <>
