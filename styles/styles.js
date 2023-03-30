@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     },
     createAccount:{
       width: '70%',
-      backgroundColor: '#0862c2',
+      backgroundColor: '#2A0944',
       padding: '4%',
       marginTop: '5%',
       borderRadius: 20,
@@ -75,7 +75,15 @@ const styles = StyleSheet.create({
         opacity: 0.8,
         marginBottom: '5%',
       },
-      
+      donorSearchButton: {
+        width: '50%',
+        backgroundColor: '#AF0404',
+        padding: '4%',
+        marginTop: '10%',
+        borderRadius: 20,
+        alignItems: 'center',
+        opacity: 0.8
+      }
       
   });
 

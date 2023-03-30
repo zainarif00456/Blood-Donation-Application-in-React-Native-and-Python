@@ -15,8 +15,9 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Login'>
         <Stack.Screen name='Login' component={Login} options={{headerShown: false}}/>
-        <Stack.Screen name='Index' component={Index} options={{headerShown: true}}/>
-        <Stack.Screen name='SignUp' component={SignUp} options={{headerShown: true}}/>
+        <Stack.Screen name='Index' component={Index} options={{title: 'Home', headerShown: false, headerStyle: {backgroundColor: '#252525'}, headerTintColor: 'white'} }/>
+        <Stack.Screen name='SignUp' component={SignUp} options={{headerShown: true, headerStyle: {backgroundColor: '#252525'}, headerTintColor: 'white'}}/>
+      
       </Stack.Navigator>
     </NavigationContainer>
   );
