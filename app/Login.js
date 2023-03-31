@@ -23,21 +23,23 @@ const Login = ({navigation}) => {
     <View style={styles.container}>
     {/* <ImageBackground source={require('./assets/images/image.png')} style={styles.backgroundImage}> */}
       <TextInput style={styles.userCredentials}  placeholder='User Name' returnKeyType='next' id='username'/>
+      <View style={{width: '100%', alignItems: 'center'}}>
       <TextInput style={styles.userCredentials} placeholder='Password' autoCompleteType='password' secureTextEntry={state}  id='password'/>
       <TouchableOpacity
                   activeOpacity={0.8}
-                  style={{backgroundColor: '#AF0404', padding: '2%', borderRadius: 20}}
+                  style={{alignSelf: 'baseline', marginLeft: '75%', marginTop: '4%',
+                   alignItems: 'center', position: 'absolute', borderRadius: 20}}
                   onPress={managePasswordVisibility}>
-                  <Text style={{color: 'white'}}>
                   <Image
-                  style={{width: 25, height:25}}
+                  style={{width: 20, height:20}}
                     source={
                       state
                         ? require('../assets/images/show.png')
                         : require('../assets/images/hide.png')
                     }
-                  />   {state? "Show Password": "Hide Password"}</Text>
+                  />
                 </TouchableOpacity>
+                </View>
       <TouchableOpacity style={styles.loginbtn} onPress={()=> navigation.navigate('Index', {username: user_name})}>
         <Text style={{color: 'white', fontSize: 20}}>
           Login

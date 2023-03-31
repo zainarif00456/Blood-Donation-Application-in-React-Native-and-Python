@@ -16,6 +16,7 @@ import close from '../assets/close.png';
 import photo from '../assets/photo.jpg';
 import { ScrollView } from 'react-native-gesture-handler';
 
+import { FontAwesome5 } from '@expo/vector-icons';
 
 
 export default function Index({navigation}) {
@@ -88,15 +89,15 @@ export default function Index({navigation}) {
             // Tab Bar Buttons....
           }
 
-          {TabButton(currentTab, setCurrentTab, "Home", home, animation)}
-          {TabButton(currentTab, setCurrentTab, "Search", search, animation)}
-          {TabButton(currentTab, setCurrentTab, "Notifications", notifications, animation)}
-          {TabButton(currentTab, setCurrentTab, "Settings", settings, animation)}
+          {TabButton(currentTab, setCurrentTab, "Home", home, animation, navigation)}
+          {TabButton(currentTab, setCurrentTab, "Search for Donors", search, animation, navigation)}
+          {TabButton(currentTab, setCurrentTab, "Notifications", notifications, animation, navigation)}
+          {TabButton(currentTab, setCurrentTab, "Settings", settings, animation, navigation)}
 
         </View>
 
         <View>
-          {TabButton(currentTab, setCurrentTab, "LogOut", logout, animation)}
+          {TabButton(currentTab, setCurrentTab, "LogOut", logout, animation, navigation)}
         </View>
 
       </View>
@@ -155,15 +156,18 @@ export default function Index({navigation}) {
               if (currentTab == 'Home'){
                 
                   return (
-                      <Home navigation={navigation}/>
+                      // <Home navigation={navigation}/>
+                      <Text>Home Screen</Text>
                   )
               }
-              else if (currentTab == 'Search'){
-                return (<Text>Search Button</Text>)
+              else if (currentTab == 'Search for Donors'){
+                return (<Search navigation={navigation}/>)
               }
 
               else if (currentTab == 'Notifications'){
-                return (<Home/>)
+                return (
+                 <Text>Notifications</Text>
+                )
               }
               return null
             })()}
@@ -178,12 +182,14 @@ export default function Index({navigation}) {
 }
 
 // For multiple Buttons in side menu...
-const TabButton = (currentTab, setCurrentTab, title, image, animation) => {
+const TabButton = (currentTab, setCurrentTab, title, image, animation, navigation) => {
   return (
 
     <TouchableOpacity onPress={() => {
       if (title == "LogOut") {
-        // Do your Stuff...
+        // Loggin out. Go back to Login screen
+        navigation.navigate("Login")
+
       } else {
         setCurrentTab(title)
        animation();
@@ -218,15 +224,19 @@ const TabButton = (currentTab, setCurrentTab, title, image, animation) => {
 }
 
 // Screens to render with click of button
-const Home = (props)=>{
+const Search = (props)=>{
 
   renderButtons = (navigation) => {
     const details = [];
-    for( let i = 0; i < 5; i++) {
+    for( let i = 0; i < 10; i++) {
       details.push(
-        <TouchableOpacity style={{width: '100%', padding: '5%', backgroundColor: 'red', marginTop: '5%',
+        <TouchableOpacity id={"detail"+i} style={{width: '100%', padding: '5%', backgroundColor: '#000066', marginTop: '5%',
         borderRadius: 10
         }} onPress={()=> navigation.navigate('UserDetails')}>
+         <View style={{width: '60%', padding: '5%', backgroundColor: 'red',
+         borderRadius: 200, alignItems: 'center'
+        
+        }}>
           <Text style={styles.userDetails}>
             Name: Zain Ul Abdeen
           </Text>
@@ -238,8 +248,13 @@ const Home = (props)=>{
           </Text>
           <Text style={styles.userDetails}>
             --------------------------------
-          </Text><Text style={{fontSize: 30, color: 'white', position: 'absolute', marginLeft: '80%',
-          marginTop: '12%', 
+          </Text>
+          </View>
+          <Text style={{fontSize: 30, textAlign: 'center', backgroundColor: 'white', height: '100%', width: '65%',
+          padding:'7%', fontWeight: 'bold', 
+          borderRadius: 250,
+           color: 'red', position: 'absolute', marginLeft: '70%',
+          marginTop: '5%', 
         }}>
             AB+
           </Text>
@@ -256,7 +271,6 @@ const Home = (props)=>{
       Donors Available
     </Text>
     <ScrollView style={{width: '100%'}}>
-
       {renderButtons(props.navigation)}
     </ScrollView >
       
@@ -275,5 +289,9 @@ const styles = StyleSheet.create({
   },
   userDetails: {
     color: '#FFFFFF',
-  }
+  },
+ 
+
+
+
 });

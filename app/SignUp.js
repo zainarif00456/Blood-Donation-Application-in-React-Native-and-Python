@@ -51,22 +51,28 @@ export default function SignUp({navigation, route}) {
         <TextInput style={styles.inputFields} placeholder='Phone No' id='phone' maxLength={11} onChangeText={setPhone} keyboardType='numeric' />
         <TextInput style={styles.inputFields} placeholder='Email-Address' id='email' keyboardType='email-address' onChangeText={setEmail} />
         <TextInput style={styles.inputFields} placeholder='User Name' id='user' onChangeText={setUserName}/>
-        <TextInput style={styles.inputFields} autoCompleteType='password' secureTextEntry={state} placeholder='Password' id='passwd' autoCorrect={false} onChangeText={setPassword} />
-        <TextInput style={styles.inputFields} autoCompleteType='password' secureTextEntry={state} placeholder='Confirm Password' id='passwd' autoCorrect={false} onChangeText={setConfirmPassword} />
-        <TouchableOpacity
+        <View style={{width: '100%', alignItems: 'center'}}>
+      <TextInput style={styles.userCredentials} placeholder='Password' autoCompleteType='password' secureTextEntry={state}  id='password'/>
+
+                </View> 
+                <View style={{width: '100%', alignItems: 'center'}}>
+      <TextInput style={styles.userCredentials} placeholder='Confirm Password' autoCompleteType='password' secureTextEntry={state}  id='confirmpassword'/>
+      <TouchableOpacity
                   activeOpacity={0.8}
-                  style={{backgroundColor: '#AF0404', padding: '2%', borderRadius: 20}}
+                  style={{alignSelf: 'baseline', marginLeft: '75%', marginTop: '4%',
+                   alignItems: 'center', position: 'absolute', borderRadius: 20}}
                   onPress={managePasswordVisibility}>
-                  <Text style={{color: 'white'}}>
                   <Image
-                  style={{width: 25, height:25}}
+                  style={{width: 20, height:20}}
                     source={
                       state
                         ? require('../assets/images/show.png')
                         : require('../assets/images/hide.png')
                     }
-                  />   {state? "Show Password": "Hide Password"}</Text>
+                  />
                 </TouchableOpacity>
+                </View>
+                
         <TouchableOpacity style={styles.signup} onPress={()=> createAccount()}>
             <Text style={{color: 'white'}}>
                 Submit
