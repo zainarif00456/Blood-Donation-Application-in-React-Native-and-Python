@@ -5,6 +5,7 @@ import { ImageBackground, StyleSheet, Text, TextInput, View, Image, TouchableOpa
 import Login from './app/Login';
 import Index from './app/Index';
 import SignUp from './app/SignUp';
+import UserDetails from './app/UserDetails';
 
 
 
@@ -17,7 +18,7 @@ export default function App() {
         <Stack.Screen name='Login' component={Login} options={{headerShown: false}}/>
         <Stack.Screen name='Index' component={Index} options={{title: 'Home', headerShown: false, } }/>
         <Stack.Screen name='SignUp' component={SignUp} options={{headerShown: true}}/>
-      
+        <Stack.Screen name='UserDetails' component={UserDetails} options={{headerShown: true}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

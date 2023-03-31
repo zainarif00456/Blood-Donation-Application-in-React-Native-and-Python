@@ -14,10 +14,11 @@ import close from '../assets/close.png';
 
 // Photo
 import photo from '../assets/photo.jpg';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 
-export default function Index() {
+export default function Index({navigation}) {
   const [currentTab, setCurrentTab] = useState("Home");
   // To get the curretn Status of menu ...
   const [showMenu, setShowMenu] = useState(false);
@@ -60,7 +61,7 @@ export default function Index() {
   return (
     <SafeAreaView style={styles.container}>
 
-      <View style={{ justifyContent: 'flex-start', padding: 15,marginTop: 25 }}>
+      <View style={{ justifyContent: 'flex-start', padding: 15}}>
         <Image source={profile} style={{
           width: 60,
           height: 60,
@@ -137,24 +138,24 @@ export default function Index() {
               width: 20,
               height: 20,
               tintColor: 'black',
-              marginTop: 40,
+              marginTop: 25,
 
             }}></Image>
 
           </TouchableOpacity>
 
-          <Text style={{
+          {/* <Text style={{
             fontSize: 30,
             fontWeight: 'bold',
             color: 'black',
             paddingTop: 20
-          }}>{currentTab}</Text>
+          }}>{currentTab}</Text> */}
          {/* Conditional rendering of screens */}
          {(() => {
               if (currentTab == 'Home'){
                 
                   return (
-                      <Home/>
+                      <Home navigation={navigation}/>
                   )
               }
               else if (currentTab == 'Search'){
@@ -217,26 +218,50 @@ const TabButton = (currentTab, setCurrentTab, title, image, animation) => {
 }
 
 // Screens to render with click of button
-const Home = ()=>{
+const Home = (props)=>{
+
+  renderButtons = (navigation) => {
+    const details = [];
+    for( let i = 0; i < 5; i++) {
+      details.push(
+        <TouchableOpacity style={{width: '100%', padding: '5%', backgroundColor: 'red', marginTop: '5%',
+        borderRadius: 10
+        }} onPress={()=> navigation.navigate('UserDetails')}>
+          <Text style={styles.userDetails}>
+            Name: Zain Ul Abdeen
+          </Text>
+          <Text style={styles.userDetails}>
+            --------------------------------
+          </Text>
+          <Text style={styles.userDetails}>
+            Contact: 03114294867
+          </Text>
+          <Text style={styles.userDetails}>
+            --------------------------------
+          </Text><Text style={{fontSize: 30, color: 'white', position: 'absolute', marginLeft: '80%',
+          marginTop: '12%', 
+        }}>
+            AB+
+          </Text>
+        </TouchableOpacity>
+    
+      )
+    }
+    return details;
+  }
+
   return (
-    <>
-    <Image source={photo} style={{
-      width: '100%',
-      height: 300,
-      borderRadius: 15,
-      marginTop: 25
-    }}></Image>
+    <View style={{width: '100%'}}>
+    <Text style={{fontSize: 30, textAlign: 'center', color: '#AF0404', fontWeight: 'bold'}}>
+      Donors Available
+    </Text>
+    <ScrollView style={{width: '100%'}}>
 
-    <Text style={{
-      fontSize: 20,
-      fontWeight: 'bold'
-      , paddingTop: 15,
-      paddingBottom: 5
-    }}>Jenna Ezarik</Text>
-
-    <Text style={{
-    }}>Techie, YouTuber, PS Lover, Apple Sheep's Sister</Text>
-    </>
+      {renderButtons(props.navigation)}
+    </ScrollView >
+      
+        
+    </View>
   );
 
 }
@@ -248,4 +273,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
   },
+  userDetails: {
+    color: '#FFFFFF',
+  }
 });

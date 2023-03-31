@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
     //   borderRadius: 10,
       opacity: 0.8,
     },
-    logoImage:{
-      marginTop: '10%',
-    },
+    // logoImage:{
+    //   marginTop: '10%',
+    // },
     loginbtn: {
       width: '50%',
       backgroundColor: '#AF0404',

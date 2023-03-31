@@ -19,7 +19,7 @@ const Login = ({navigation}) => {
      
     <Image source={require('../assets/images/image.png')} style={styles.logoImage}></Image>
     <Text style={styles.titleHeading}>B L O O D</Text>
-    <ScrollView style={{width: '100%', paddingTop: '10%'}}>
+    <ScrollView style={{width: '100%'}}>
     <View style={styles.container}>
     {/* <ImageBackground source={require('./assets/images/image.png')} style={styles.backgroundImage}> */}
       <TextInput style={styles.userCredentials}  placeholder='User Name' returnKeyType='next' id='username'/>
