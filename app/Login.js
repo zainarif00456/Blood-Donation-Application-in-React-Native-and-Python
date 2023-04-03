@@ -11,7 +11,19 @@ const Login = ({navigation}) => {
   const managePasswordVisibility = ()=>{
     setState(!state);
   }
-
+  const login = async  ()=>{
+    try {
+      const response = await fetch('http://192.168.0.83:5000/index');
+      const json = await response.json();
+      if (json.status==0) {
+        navigation.navigate('Index', {username: json.response});
+      }
+    } catch (error) {
+      console.error(error);
+      alert(error.message);
+    }
+    
+  }
 
 
   return (
@@ -40,7 +52,7 @@ const Login = ({navigation}) => {
                   />
                 </TouchableOpacity>
                 </View>
-      <TouchableOpacity style={styles.loginbtn} onPress={()=> navigation.navigate('Index', {username: user_name})}>
+      <TouchableOpacity style={styles.loginbtn} onPress={login}>
         <Text style={{color: 'white', fontSize: 20}}>
           Login
         </Text>

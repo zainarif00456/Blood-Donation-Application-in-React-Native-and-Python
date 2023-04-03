@@ -19,7 +19,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { FontAwesome5 } from '@expo/vector-icons';
 
 
-export default function Index({navigation}) {
+export default function Index({navigation, route}) {
   const [currentTab, setCurrentTab] = useState("Home");
   // To get the curretn Status of menu ...
   const [showMenu, setShowMenu] = useState(false);
@@ -157,7 +157,7 @@ export default function Index({navigation}) {
                 
                   return (
                       // <Home navigation={navigation}/>
-                      <Text>Home Screen</Text>
+                      <Home navigation={navigation} username={route.params.username}/>
                   )
               }
               else if (currentTab == 'Search for Donors'){
@@ -280,6 +280,19 @@ const Search = (props)=>{
 
 }
 
+
+const Home = (props) =>{
+  return (
+    <View style={{width: '100%', height: '100%'}}>
+      <Text style={styles.nameHeader}>
+      {props.username[0]}
+    </Text>
+    </View>
+  )
+}
+
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -290,8 +303,18 @@ const styles = StyleSheet.create({
   userDetails: {
     color: '#FFFFFF',
   },
- 
-
+  nameHeader: {
+    marginLeft: '20%',
+    marginRight: '20%',
+    marginTop: '5%',
+    backgroundColor: 'red',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    padding: '20%',
+    borderRadius: 250,
+    fontSize: 50,
+    fontWeight: 'bold'
+  }
 
 
 });
