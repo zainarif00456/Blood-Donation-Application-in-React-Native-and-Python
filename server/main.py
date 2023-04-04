@@ -10,6 +10,7 @@ def index():
         'status': 0
     }
 
+
 @app.route('/createaccount', methods=["POST"])
 def createAccount():
     payload = request.get_json()

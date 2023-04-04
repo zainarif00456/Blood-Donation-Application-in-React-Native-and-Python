@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useRef, useState } from 'react';
-import { Alert, Animated, BackHandler, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Alert, Animated, BackHandler, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import profile from '../assets/profile.png';
 // Tab ICons...
 import home from '../assets/home.png';
@@ -32,18 +32,11 @@ export default function Index({navigation, route}) {
   const scaleValue = useRef(new Animated.Value(1)).current;
   const closeButtonOffset = useRef(new Animated.Value(0)).current;
 
-    navigation.addListener("beforeRemove", (e) => {
-      e.preventDefault();
-      Alert.alert(
-        'Exit',
-        'Are you sure you want to Exit?',  
-        [
-           {text: 'No', onPress: () => e.preventDefault(), style: 'cancel'},
-           {text: 'Yes', onPress: () => BackHandler.exitApp()},
-        ],
-        { cancelable: false }
-   )
-    });
+    // useEffect(() => {
+    //   BackHandler.addEventListener("hardwareBackPress", () => {
+    //     BackHandler.exitApp();
+    //   });
+    // }, [])
 
 
   const animation = () => {
@@ -151,8 +144,8 @@ export default function Index({navigation, route}) {
           <TouchableOpacity onPress={animation}>
 
             <Image source={showMenu ? close : menu} style={{
-              width: 20,
-              height: 20,
+              width: 30,
+              height: 30,
               tintColor: 'black',
               marginTop: 25,
 
@@ -176,7 +169,11 @@ export default function Index({navigation, route}) {
                   )
               }
               else if (currentTab == 'Search for Donors'){
-                return (<Search navigation={navigation}/>)
+                return (
+                <>
+                <Search navigation={navigation}/>
+                </>
+                )
               }
 
               else if (currentTab == 'Notifications'){
@@ -209,7 +206,7 @@ const TabButton = (currentTab, setCurrentTab, title, image, animation, navigatio
           'Exit',
           'Are you sure you want to Exit?',  
           [
-             {text: 'No', onPress: () => e.preventDefault(), style: 'cancel'},
+             {text: 'No', onPress: () => {return}, style: 'cancel'},
              {text: 'Yes', onPress: () => navigation.navigate('StartUp')},
           ],
           { cancelable: false }
