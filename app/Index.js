@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useRef, useState } from 'react';
-import { Animated, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { Alert, Animated, BackHandler, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import profile from '../assets/profile.png';
 // Tab ICons...
 import home from '../assets/home.png';
@@ -14,6 +14,7 @@ import close from '../assets/close.png';
 
 // Photo
 import photo from '../assets/photo.jpg';
+import donor_img from '../assets/donor.png';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -30,6 +31,20 @@ export default function Index({navigation, route}) {
   // Scale Intially must be One...
   const scaleValue = useRef(new Animated.Value(1)).current;
   const closeButtonOffset = useRef(new Animated.Value(0)).current;
+
+    navigation.addListener("beforeRemove", (e) => {
+      e.preventDefault();
+      Alert.alert(
+        'Exit',
+        'Are you sure you want to Exit?',  
+        [
+           {text: 'No', onPress: () => e.preventDefault(), style: 'cancel'},
+           {text: 'Yes', onPress: () => BackHandler.exitApp()},
+        ],
+        { cancelable: false }
+   )
+    });
+
 
   const animation = () => {
     // Do Actions Here....
@@ -90,7 +105,7 @@ export default function Index({navigation, route}) {
           }
 
           {TabButton(currentTab, setCurrentTab, "Home", home, animation, navigation)}
-          {TabButton(currentTab, setCurrentTab, "Search for Donors", search, animation, navigation)}
+          {TabButton(currentTab, setCurrentTab, "Search for Donors", donor_img, animation, navigation)}
           {TabButton(currentTab, setCurrentTab, "Notifications", notifications, animation, navigation)}
           {TabButton(currentTab, setCurrentTab, "Settings", settings, animation, navigation)}
 
@@ -183,13 +198,22 @@ export default function Index({navigation, route}) {
 
 // For multiple Buttons in side menu...
 const TabButton = (currentTab, setCurrentTab, title, image, animation, navigation) => {
+  
   return (
 
     <TouchableOpacity onPress={() => {
       if (title == "LogOut") {
-        // Loggin out. Go back to Login screen
-        navigation.navigate("Login")
-
+        // Loggin out. Go back to Start-up screen
+        
+        Alert.alert(
+          'Exit',
+          'Are you sure you want to Exit?',  
+          [
+             {text: 'No', onPress: () => e.preventDefault(), style: 'cancel'},
+             {text: 'Yes', onPress: () => navigation.navigate('StartUp')},
+          ],
+          { cancelable: false }
+     )
       } else {
         setCurrentTab(title)
        animation();

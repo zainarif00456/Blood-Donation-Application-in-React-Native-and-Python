@@ -22,13 +22,41 @@ export default function SignUp({navigation, route}) {
     const [dob, setDOB] = useState("");
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
+    const [address, setAddress] = useState("");
     const [username, setUserName] = useState("");
     const [passwd, setPassword] = useState("");
     const [confirmpasswd, setConfirmPassword] = useState("");
     // Function for registering users
-    const createAccount = () => {
+    const createAccount =async () => {
       if(fullname===""){
-        Alert.alert('Full Name', 'Please enter Full Name');
+        Alert.alert('Missing Entries', 'Please Enter all Entries');
+      }
+      else{
+        payload = {
+          username: fullname,
+          cnic: cnic,
+          blood: blood,
+          dob: dob,
+          phone: phone,
+          address: address,
+          email: email,
+          username: username,
+          password: passwd
+        }
+        try {
+          const response = await fetch('http://192.168.0.83:5000/createaccount', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const json = await response.json();
+          if (json.status==0) {
+            navigation.navigate('Index', {username: json.response});
+          }
+        } catch (error) {
+          console.error(error);
+          alert(error.message);
+        }
       }
     }
     const [state, setState] = useState(true);
@@ -49,14 +77,15 @@ export default function SignUp({navigation, route}) {
 
         <TextInput style={styles.inputFields} placeholder='Date of Birth (DD-MM-YYYY)' onChangeText={setDOB} id='dob' />
         <TextInput style={styles.inputFields} placeholder='Phone No' id='phone' maxLength={11} onChangeText={setPhone} keyboardType='numeric' />
+        <TextInput style={styles.inputFields} onChangeText={setAddress} placeholder='Home Address' id='address'/>
         <TextInput style={styles.inputFields} placeholder='Email-Address' id='email' keyboardType='email-address' onChangeText={setEmail} />
         <TextInput style={styles.inputFields} placeholder='User Name' id='user' onChangeText={setUserName}/>
         <View style={{width: '100%', alignItems: 'center'}}>
-      <TextInput style={styles.userCredentials} placeholder='Password' autoCompleteType='password' secureTextEntry={state}  id='password'/>
+      <TextInput style={styles.userCredentials} placeholder='Password' onChangeText={setPassword} autoCompleteType='password' secureTextEntry={state}  id='password'/>
 
                 </View> 
                 <View style={{width: '100%', alignItems: 'center'}}>
-      <TextInput style={styles.userCredentials} placeholder='Confirm Password' autoCompleteType='password' secureTextEntry={state}  id='confirmpassword'/>
+      <TextInput style={styles.userCredentials} placeholder='Confirm Password' onChangeText={setConfirmPassword} autoCompleteType='password' secureTextEntry={state}  id='confirmpassword'/>
       <TouchableOpacity
                   activeOpacity={0.8}
                   style={{alignSelf: 'baseline', marginLeft: '75%', marginTop: '4%',

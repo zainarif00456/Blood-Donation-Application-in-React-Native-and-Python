@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
@@ -8,6 +8,15 @@ def index():
     return {
         'response': 'Zain Ul Abdeen',
         'status': 0
+    }
+
+@app.route('/createaccount', methods=["POST"])
+def createAccount():
+    payload = request.get_json()
+    print(payload)
+    return {
+        'status': 0,
+        'response': 'Zain'
     }
 
 
