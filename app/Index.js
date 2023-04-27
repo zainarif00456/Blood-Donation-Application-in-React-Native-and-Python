@@ -2,6 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Alert, Animated, BackHandler, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import profile from '../assets/profile.png';
+import * as Location from 'expo-location';
+import MapView from 'react-native-maps';
+import {Marker} from 'react-native-maps';
+
 // Tab ICons...
 import home from '../assets/home.png';
 import search from '../assets/search.png';
@@ -302,12 +306,48 @@ const Search = (props)=>{
 }
 
 
+
+
 const Home = (props) =>{
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [latitude, setLatitude] = useState();
+  const [longitude, setLongitude] = useState();
+  useEffect(() => {
+    (async () => {
+      
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+      setLatitude(location.coords.latitude);
+    setLongitude(location.coords.longitude);
+    })();
+  }, []);
+
+  let text = 'Waiting..';
+  if (errorMsg) {
+    text = errorMsg;
+  } 
   return (
     <View style={{width: '100%', height: '100%'}}>
       <Text style={styles.nameHeader}>
-      {props.username[0]}
+      {props.username[0]} 
     </Text>
+    <MapView  style={{width: '100%'}}
+      region={{
+        latitude: 37.78825,
+      longitude: -122.4324,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+      }}>
+      
+      </MapView>
+    
     </View>
   )
 }
