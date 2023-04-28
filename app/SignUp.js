@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import SelectDropdown from 'react-native-select-dropdown';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from '../styles/styles';
+import { api_key } from './api_key';
 
 
 export default function SignUp({navigation, route}) {
@@ -46,7 +47,7 @@ export default function SignUp({navigation, route}) {
         try {
           const response = await fetch('http://192.168.0.83:5000/createaccount', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'key': api_key },
             body: JSON.stringify(payload)
           });
           const json = await response.json();

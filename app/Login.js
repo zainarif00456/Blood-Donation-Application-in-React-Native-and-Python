@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { ImageBackground, StyleSheet, Text, TextInput, View, Image, TouchableOpacity, ScrollView } from 'react-native';
 import styles from '../styles/styles';
+import { api_key } from './api_key';
 
 
 const Login = ({navigation}) => {
@@ -13,7 +14,9 @@ const Login = ({navigation}) => {
   }
   const login = async  ()=>{
     try {
-      const response = await fetch('http://192.168.0.83:5000/index');
+      const response = await fetch('http://192.168.0.83:5000/index', {
+        headers: { 'Content-Type': 'application/json', 'key': api_key }
+      });
       const json = await response.json();
       if (json.status==0) {
         navigation.navigate('Index', {username: json.response});
