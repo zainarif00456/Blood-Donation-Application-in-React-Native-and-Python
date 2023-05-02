@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, render_template
+import dboperations as db
 
 app = Flask(__name__)
-
 
 
 def authenticate_api_key(api_key):
@@ -37,10 +37,16 @@ def index():
 def createAccount():
     payload = request.get_json()
     print(payload)
-    return {
-        'status': 0,
-        'response': 'Zain'
-    }
+    if payload is not None:
+        response = db.createAccount(payload)
+        if response:
+            return {
+                'status': 0,
+                'response': 'Zain'
+            }
+        else:
+            return {"status": 1, 'response': 'Failed'}, 400
+    return {"status": 1, 'response': 'Failed'}, 400
 
 
 @app.route('/click-me')

@@ -34,7 +34,7 @@ export default function SignUp({navigation, route}) {
       }
       else{
         payload = {
-          username: fullname,
+          fullname: fullname,
           cnic: cnic,
           blood: blood,
           dob: dob,
