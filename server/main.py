@@ -42,11 +42,28 @@ def createAccount():
         if response:
             return {
                 'status': 0,
-                'response': 'Zain'
+                'response': 'success'
             }
         else:
             return {"status": 1, 'response': 'Failed'}, 400
     return {"status": 1, 'response': 'Failed'}, 400
+
+
+@app.route('/login', methods=['POST'])
+@authenticate_api_key(api_key)
+def login():
+    payload = request.get_json()
+    response = db.getUserForAuthentication(payload)
+    if response is not None:
+        return jsonify({
+            "status": 0,
+            "response": response
+        })
+    else:
+        return jsonify({
+            "status": 1,
+            "response": response
+        })
 
 
 @app.route('/click-me')

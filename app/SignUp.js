@@ -34,15 +34,15 @@ export default function SignUp({navigation, route}) {
       }
       else{
         payload = {
-          fullname: fullname,
-          cnic: cnic,
-          blood: blood,
-          dob: dob,
-          phone: phone,
-          address: address,
-          email: email,
-          username: username,
-          password: passwd
+          Full_Name: fullname,
+          CNIC: cnic,
+          Blood_Group: blood,
+          Date_of_Birth: dob,
+          Phone_No: phone,
+          Home_Address: address,
+          Email_Address: email,
+          User_Name: username,
+          User_Password: passwd
         }
         try {
           const response = await fetch('http://192.168.0.83:5000/createaccount', {

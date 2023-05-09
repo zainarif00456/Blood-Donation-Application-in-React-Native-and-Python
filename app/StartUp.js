@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         backgroundColor: '#AF0404',
-        borderTopLeftRadius: 150,
+        borderTopLeftRadius: 150, 
         borderBottomRightRadius: 150
     },
     signinbtn: {
