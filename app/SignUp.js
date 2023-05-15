@@ -35,14 +35,13 @@ export default function SignUp({navigation, route}) {
       else{
         payload = {
           Full_Name: fullname,
-          CNIC: cnic,
           Blood_Group: blood,
           Date_of_Birth: dob,
           Phone_No: phone,
           Home_Address: address,
-          Email_Address: email,
           User_Name: username,
-          User_Password: passwd
+          User_Password: passwd,
+          _id: username
         }
         try {
           const response = await fetch('http://192.168.0.83:5000/createaccount', {
@@ -53,6 +52,9 @@ export default function SignUp({navigation, route}) {
           const json = await response.json();
           if (json.status==0) {
             navigation.navigate('Index', {username: json.response});
+          }
+          else if (json.status == 1){
+            alert("User with this user name already exists. Try a different user name")
           }
         } catch (error) {
           console.error(error);
@@ -72,14 +74,14 @@ export default function SignUp({navigation, route}) {
       <ScrollView style={{width: '100%'}}>
         <View style={styles.container}>
         <TextInput style={styles.inputFields} onChangeText={setFullname} placeholder='Full Name' id='fullname'/>
-        <TextInput style={styles.inputFields} onChangeText={setCNIC} placeholder='CNIC' keyboardType='numeric' maxLength={13} id='cnic' />
+        {/* <TextInput style={styles.inputFields} onChangeText={setCNIC} placeholder='CNIC' keyboardType='numeric' maxLength={13} id='cnic' /> */}
         <SelectDropdown dropdownStyle={styles.bloodgroupField} onSelect={setBlood} id={'bloodgroup'} rowTextStyle={{color:'white'}}
         buttonTextStyle={{color: 'white'}} buttonStyle={styles.bloodgroupField} data={bloodGroups} />
 
         <TextInput style={styles.inputFields} placeholder='Date of Birth (DD-MM-YYYY)' onChangeText={setDOB} id='dob' />
         <TextInput style={styles.inputFields} placeholder='Phone No' id='phone' maxLength={11} onChangeText={setPhone} keyboardType='numeric' />
         <TextInput style={styles.inputFields} onChangeText={setAddress} placeholder='Home Address' id='address'/>
-        <TextInput style={styles.inputFields} placeholder='Email-Address' id='email' keyboardType='email-address' onChangeText={setEmail} />
+        {/* <TextInput style={styles.inputFields} placeholder='Email-Address' id='email' keyboardType='email-address' onChangeText={setEmail} /> */}
         <TextInput style={styles.inputFields} placeholder='User Name' id='user' onChangeText={setUserName}/>
         <View style={{width: '100%', alignItems: 'center'}}>
       <TextInput style={styles.userCredentials} placeholder='Password' onChangeText={setPassword} autoCompleteType='password' secureTextEntry={state}  id='password'/>

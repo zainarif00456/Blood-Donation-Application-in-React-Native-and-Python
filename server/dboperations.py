@@ -38,14 +38,11 @@ def getUserForAuthentication(payload):
     user = Models.Users()
     user.User_Name = payload['username']
     user.Password = payload['password']
-    query = f"select * from Users where User_Name='{user.User_Name}' and User_Password='{user.Password}' and IsActive=1"
+    query = f"select * from Users where User_Name=? and User_Password=? and IsActive=1"
     try:
-        data = pd.read_sql_query(query, conn)
-        print(data)
-        data.drop(index=0)
-        print(data)
-        data = data.to_dict()
-        # data = cursor.fetchone()
+        cursor = conn.cursor()
+        cursor.execute(query, user.User_Name, user.Password)
+        data = cursor.fetchone()
         if data is not None:
             print(data)
             return dict(data)

@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       color: 'red',
       textAlign: 'center',
+      marginBottom: '5%',
     },
     userCredentials: {
       width: '80%',
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
     },
     inputFields: {
         width: '80%',
-        margin: '5%',
+        margin: '3%',
         // backgroundColor: '#AF0404',
         borderBottomWidth: 1,
         borderBottomColor: '#AF0404',

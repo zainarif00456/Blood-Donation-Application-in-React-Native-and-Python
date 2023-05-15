@@ -169,7 +169,7 @@ export default function Index({navigation, route}) {
                 
                   return (
                       // <Home navigation={navigation}/>
-                      <Home navigation={navigation} username={route.params.username}/>
+                      <Home navigation={navigation} username={route.params.Full_Name}/>
                   )
               }
               else if (currentTab == 'Search for Donors'){

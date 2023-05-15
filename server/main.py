@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, render_template
-import dboperations as db
+import dboperations2 as db
 
 app = Flask(__name__)
 
@@ -9,7 +9,7 @@ def authenticate_api_key(api_key):
         def wrapper(*args, **kwargs):
             print(request.headers.get('key'))
             if request.headers.get('key') == api_key:
-                print(f"CHECK {api_key}")
+                #print(f"CHECK {api_key}")
                 return func(*args, **kwargs)
             else:
                 return jsonify({'message': 'Invalid API key. Access denied.'}), 401
@@ -53,13 +53,16 @@ def createAccount():
 @authenticate_api_key(api_key)
 def login():
     payload = request.get_json()
+    print(payload)
     response = db.getUserForAuthentication(payload)
+    print(response)
     if response is not None:
         return jsonify({
             "status": 0,
             "response": response
         })
     else:
+        print("INVALID USERNAME OR PASSWORD")
         return jsonify({
             "status": 1,
             "response": response
